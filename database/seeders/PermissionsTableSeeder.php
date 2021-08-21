@@ -120,27 +120,51 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 28,
-                'title' => 'character_create',
+                'title' => 'system_calendar_access',
             ],
             [
                 'id'    => 29,
-                'title' => 'character_edit',
+                'title' => 'personnage_access',
             ],
             [
                 'id'    => 30,
-                'title' => 'character_show',
+                'title' => 'player_create',
             ],
             [
                 'id'    => 31,
-                'title' => 'character_delete',
+                'title' => 'player_edit',
             ],
             [
                 'id'    => 32,
-                'title' => 'character_access',
+                'title' => 'player_show',
             ],
             [
                 'id'    => 33,
-                'title' => 'system_calendar_access',
+                'title' => 'player_delete',
+            ],
+            [
+                'id'    => 34,
+                'title' => 'player_access',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'skill_create',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'skill_edit',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'skill_show',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'skill_delete',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'skill_access',
             ],
         ];
 
