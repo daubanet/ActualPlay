@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Player;
 use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
@@ -12,14 +13,17 @@ class Edit extends Component
 
     public array $roles = [];
 
+    public array $player = [];
+
     public string $password = '';
 
     public array $listsForFields = [];
 
     public function mount(User $user)
     {
-        $this->user  = $user;
-        $this->roles = $this->user->roles()->pluck('id')->toArray();
+        $this->user   = $user;
+        $this->roles  = $this->user->roles()->pluck('id')->toArray();
+        $this->player = $this->user->player()->pluck('id')->toArray();
         $this->initListsForFields();
     }
 
@@ -34,6 +38,7 @@ class Edit extends Component
         $this->user->password = $this->password;
         $this->user->save();
         $this->user->roles()->sync($this->roles);
+        $this->user->player()->sync($this->player);
 
         return redirect()->route('admin.users.index');
     }
@@ -61,11 +66,19 @@ class Edit extends Component
                 'integer',
                 'exists:roles,id',
             ],
+            'player' => [
+                'array',
+            ],
+            'player.*.id' => [
+                'integer',
+                'exists:players,id',
+            ],
         ];
     }
 
     protected function initListsForFields(): void
     {
-        $this->listsForFields['roles'] = Role::pluck('title', 'id')->toArray();
+        $this->listsForFields['roles']  = Role::pluck('title', 'id')->toArray();
+        $this->listsForFields['player'] = Player::pluck('name', 'id')->toArray();
     }
 }
