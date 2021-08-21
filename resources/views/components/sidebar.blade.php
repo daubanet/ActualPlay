@@ -101,6 +101,28 @@
                         </a>
                     </li>
                 @endcan
+                @can('system_calendar_access')
+                    <li class="items-center">
+                        <a class="{{ request()->is("admin/system-calendars*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.system-calendars.index") }}">
+                            <i class="fa-fw c-sidebar-nav-icon far fa-calendar">
+                            </i>
+                            {{ trans('cruds.systemCalendar.title') }}
+                        </a>
+                    </li>
+                @endcan
+                <li class="items-center">
+                    <a class="{{ request()->is("admin/messages*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.messages.index") }}">
+                        <i class="far fa-fw fa-envelope c-sidebar-nav-icon">
+                        </i>
+                        {{ __('global.messages') }}
+                        @if($unreadConversations['all'])
+                            <span class="text-xs bg-rose-500 text-white px-2 py-1 rounded-xl font-bold float-right">
+                                {{ $unreadConversations['all'] }}
+                            </span>
+                        @endif
+                    </a>
+                </li>
+
 
                 @if(file_exists(app_path('Http/Controllers/Auth/UserProfileController.php')))
                     @can('auth_profile_edit')
