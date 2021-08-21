@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CampaignController;
+use App\Http\Controllers\Admin\CharacterController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PermissionController;
@@ -32,6 +33,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     // Game
     Route::resource('games', GameController::class, ['except' => ['store', 'update', 'destroy']]);
+
+    // Character
+    Route::resource('characters', CharacterController::class, ['except' => ['store', 'update', 'destroy']]);
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {

@@ -118,6 +118,26 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 27,
                 'title' => 'game_access',
             ],
+            [
+                'id'    => 28,
+                'title' => 'character_create',
+            ],
+            [
+                'id'    => 29,
+                'title' => 'character_edit',
+            ],
+            [
+                'id'    => 30,
+                'title' => 'character_show',
+            ],
+            [
+                'id'    => 31,
+                'title' => 'character_delete',
+            ],
+            [
+                'id'    => 32,
+                'title' => 'character_access',
+            ],
         ];
 
         Permission::insert($permissions);
