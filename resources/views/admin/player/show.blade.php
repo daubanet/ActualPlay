@@ -209,6 +209,16 @@
                                 {{ $player->damage }}
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.player.fields.skill') }}
+                            </th>
+                            <td>
+                                @foreach($player->skill as $key => $entry)
+                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
+                                @endforeach
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

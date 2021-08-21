@@ -69,7 +69,7 @@ class Index extends Component
 
     public function render()
     {
-        $query = Player::advancedFilter([
+        $query = Player::with(['skill'])->advancedFilter([
             's'               => $this->search ?: null,
             'order_column'    => $this->sortBy,
             'order_direction' => $this->sortDirection,
