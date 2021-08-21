@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Game;
 
-use App\Models\Campaign;
 use App\Models\Game;
 use Livewire\Component;
 
@@ -10,12 +9,9 @@ class Create extends Component
 {
     public Game $game;
 
-    public array $listsForFields = [];
-
     public function mount(Game $game)
     {
         $this->game = $game;
-        $this->initListsForFields();
     }
 
     public function render()
@@ -43,16 +39,6 @@ class Create extends Component
                 'required',
                 'date_format:' . config('project.datetime_format'),
             ],
-            'game.campaign_id' => [
-                'integer',
-                'exists:campaigns,id',
-                'nullable',
-            ],
         ];
-    }
-
-    protected function initListsForFields(): void
-    {
-        $this->listsForFields['campaign'] = Campaign::pluck('name', 'id')->toArray();
     }
 }

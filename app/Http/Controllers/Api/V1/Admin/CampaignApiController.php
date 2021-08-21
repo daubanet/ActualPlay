@@ -17,13 +17,13 @@ class CampaignApiController extends Controller
     {
         abort_if(Gate::denies('campaign_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CampaignResource(Campaign::all());
+        return new CampaignResource(Campaign::with(['game'])->get());
     }
 
     public function store(StoreCampaignRequest $request)
     {
         $campaign = Campaign::create($request->validated());
-
+        $campaign->game()->sync($request->input('game', []));
         if ($request->input('photo', false)) {
             $campaign->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
         }
@@ -37,13 +37,13 @@ class CampaignApiController extends Controller
     {
         abort_if(Gate::denies('campaign_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CampaignResource($campaign);
+        return new CampaignResource($campaign->load(['game']));
     }
 
     public function update(UpdateCampaignRequest $request, Campaign $campaign)
     {
         $campaign->update($request->validated());
-
+        $campaign->game()->sync($request->input('game', []));
         if ($request->input('photo', false)) {
             if (!$campaign->photo || $request->input('photo') !== $campaign->photo->file_name) {
                 if ($campaign->photo) {

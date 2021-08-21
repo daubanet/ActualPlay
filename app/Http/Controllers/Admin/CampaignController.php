@@ -35,6 +35,8 @@ class CampaignController extends Controller
     {
         abort_if(Gate::denies('campaign_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $campaign->load('game');
+
         return view('admin.campaign.show', compact('campaign'));
     }
 

@@ -41,16 +41,6 @@
                                 {{ $game->start }}
                             </td>
                         </tr>
-                        <tr>
-                            <th>
-                                {{ trans('cruds.game.fields.campaign') }}
-                            </th>
-                            <td>
-                                @if($game->campaign)
-                                    <span class="badge badge-relationship">{{ $game->campaign->name ?? '' }}</span>
-                                @endif
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

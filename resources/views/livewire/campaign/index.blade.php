@@ -64,6 +64,9 @@
                             @include('components.table.sort', ['field' => 'end'])
                         </th>
                         <th>
+                            {{ trans('cruds.campaign.fields.game') }}
+                        </th>
+                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -94,6 +97,11 @@
                             </td>
                             <td>
                                 {{ $campaign->end }}
+                            </td>
+                            <td>
+                                @foreach($campaign->game as $key => $entry)
+                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 <div class="flex justify-end">

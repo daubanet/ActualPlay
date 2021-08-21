@@ -41,6 +41,13 @@ class UpdateCampaignRequest extends FormRequest
                 'nullable',
                 'date_format:' . config('project.date_format'),
             ],
+            'game' => [
+                'array',
+            ],
+            'game.*.id' => [
+                'integer',
+                'exists:games,id',
+            ],
         ];
     }
 }

@@ -25,11 +25,6 @@ class StoreGameRequest extends FormRequest
                 'required',
                 'date_format:' . config('project.datetime_format'),
             ],
-            'game.campaign_id' => [
-                'integer',
-                'exists:campaigns,id',
-                'nullable',
-            ],
         ];
     }
 }

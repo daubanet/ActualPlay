@@ -20,16 +20,6 @@
             {{ trans('cruds.game.fields.start_helper') }}
         </div>
     </div>
-    <div class="form-group {{ $errors->has('game.campaign_id') ? 'invalid' : '' }}">
-        <label class="form-label" for="campaign">{{ trans('cruds.game.fields.campaign') }}</label>
-        <x-select-list class="form-control" id="campaign" name="campaign" :options="$this->listsForFields['campaign']" wire:model="game.campaign_id" />
-        <div class="validation-message">
-            {{ $errors->first('game.campaign_id') }}
-        </div>
-        <div class="help-block">
-            {{ trans('cruds.game.fields.campaign_helper') }}
-        </div>
-    </div>
 
     <div class="form-group">
         <button class="btn btn-indigo mr-2" type="submit">
