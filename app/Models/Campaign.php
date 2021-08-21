@@ -110,4 +110,8 @@ class Campaign extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function games(){
+        return $this->hasMany(Game::class);
+    }
 }
