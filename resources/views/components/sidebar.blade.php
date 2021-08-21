@@ -92,15 +92,6 @@
                         </a>
                     </li>
                 @endcan
-                @can('character_access')
-                    <li class="items-center">
-                        <a class="{{ request()->is("admin/characters*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.characters.index") }}">
-                            <i class="fa-fw c-sidebar-nav-icon fas fa-cogs">
-                            </i>
-                            {{ trans('cruds.character.title') }}
-                        </a>
-                    </li>
-                @endcan
                 @can('system_calendar_access')
                     <li class="items-center">
                         <a class="{{ request()->is("admin/system-calendars*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.system-calendars.index") }}">
@@ -108,6 +99,35 @@
                             </i>
                             {{ trans('cruds.systemCalendar.title') }}
                         </a>
+                    </li>
+                @endcan
+                @can('personnage_access')
+                    <li class="items-center">
+                        <a class="has-sub {{ request()->is("admin/players*")||request()->is("admin/skills*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="#" onclick="window.openSubNav(this)">
+                            <i class="fa-fw fas c-sidebar-nav-icon fa-users">
+                            </i>
+                            {{ trans('cruds.personnage.title') }}
+                        </a>
+                        <ul class="ml-4 subnav hidden">
+                            @can('player_access')
+                                <li class="items-center">
+                                    <a class="{{ request()->is("admin/players*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.players.index") }}">
+                                        <i class="fa-fw c-sidebar-nav-icon fas fa-user">
+                                        </i>
+                                        {{ trans('cruds.player.title') }}
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('skill_access')
+                                <li class="items-center">
+                                    <a class="{{ request()->is("admin/skills*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.skills.index") }}">
+                                        <i class="fa-fw c-sidebar-nav-icon far fa-chart-bar">
+                                        </i>
+                                        {{ trans('cruds.skill.title') }}
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
                     </li>
                 @endcan
                 <li class="items-center">

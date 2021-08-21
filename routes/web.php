@@ -1,12 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\CampaignController;
-use App\Http\Controllers\Admin\CharacterController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\SystemCalendarController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\UserProfileController;
@@ -36,11 +37,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     // Game
     Route::resource('games', GameController::class, ['except' => ['store', 'update', 'destroy']]);
 
-    // Character
-    Route::resource('characters', CharacterController::class, ['except' => ['store', 'update', 'destroy']]);
-
     // System Calendar
     Route::resource('system-calendars', SystemCalendarController::class, ['except' => ['store', 'update', 'destroy', 'create', 'edit', 'show']]);
+
+    // Player
+    Route::resource('players', PlayerController::class, ['except' => ['store', 'update', 'destroy']]);
+
+    // Skill
+    Route::resource('skills', SkillController::class, ['except' => ['store', 'update', 'destroy']]);
 
     // Messages
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
