@@ -3,20 +3,27 @@
 namespace App\Http\Livewire\Campaign;
 
 use App\Models\Campaign;
+use App\Models\Game;
 use Livewire\Component;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Edit extends Component
 {
+    public array $game = [];
+
     public Campaign $campaign;
 
     public array $mediaToRemove = [];
+
+    public array $listsForFields = [];
 
     public array $mediaCollections = [];
 
     public function mount(Campaign $campaign)
     {
-        $this->campaign         = $campaign;
+        $this->campaign = $campaign;
+        $this->game     = $this->campaign->game()->pluck('id')->toArray();
+        $this->initListsForFields();
         $this->mediaCollections = [
             'campaign_photo' => $campaign->photo,
         ];
@@ -32,6 +39,7 @@ class Edit extends Component
         $this->validate();
 
         $this->campaign->save();
+        $this->campaign->game()->sync($this->game);
         $this->syncMedia();
 
         return redirect()->route('admin.campaigns.index');
@@ -83,7 +91,19 @@ class Edit extends Component
                 'nullable',
                 'date_format:' . config('project.date_format'),
             ],
+            'game' => [
+                'array',
+            ],
+            'game.*.id' => [
+                'integer',
+                'exists:games,id',
+            ],
         ];
+    }
+
+    protected function initListsForFields(): void
+    {
+        $this->listsForFields['game'] = Game::pluck('name', 'id')->toArray();
     }
 
     protected function syncMedia(): void

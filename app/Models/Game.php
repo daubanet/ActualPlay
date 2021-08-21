@@ -21,20 +21,17 @@ class Game extends Model
         'id',
         'name',
         'start',
-        'campaign.name',
     ];
 
     public $filterable = [
         'id',
         'name',
         'start',
-        'campaign.name',
     ];
 
     protected $fillable = [
         'name',
         'start',
-        'campaign_id',
     ];
 
     protected $dates = [
@@ -52,11 +49,6 @@ class Game extends Model
     public function setStartAttribute($value)
     {
         $this->attributes['start'] = $value ? Carbon::createFromFormat(config('project.datetime_format'), $value)->format('Y-m-d H:i:s') : null;
-    }
-
-    public function campaign()
-    {
-        return $this->belongsTo(Campaign::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)

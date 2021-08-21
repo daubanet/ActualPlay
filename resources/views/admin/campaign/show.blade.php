@@ -69,6 +69,16 @@
                                 {{ $campaign->end }}
                             </td>
                         </tr>
+                        <tr>
+                            <th>
+                                {{ trans('cruds.campaign.fields.game') }}
+                            </th>
+                            <td>
+                                @foreach($campaign->game as $key => $entry)
+                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
+                                @endforeach
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

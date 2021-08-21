@@ -17,7 +17,7 @@ class GameApiController extends Controller
     {
         abort_if(Gate::denies('game_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new GameResource(Game::with(['campaign'])->get());
+        return new GameResource(Game::all());
     }
 
     public function store(StoreGameRequest $request)
@@ -33,7 +33,7 @@ class GameApiController extends Controller
     {
         abort_if(Gate::denies('game_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new GameResource($game->load(['campaign']));
+        return new GameResource($game);
     }
 
     public function update(UpdateGameRequest $request, Game $game)

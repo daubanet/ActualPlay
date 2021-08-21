@@ -35,6 +35,7 @@ class Campaign extends Model implements HasMedia
         'description',
         'start',
         'end',
+        'game.name',
     ];
 
     protected $appends = [
@@ -104,6 +105,11 @@ class Campaign extends Model implements HasMedia
     public function setEndAttribute($value)
     {
         $this->attributes['end'] = $value ? Carbon::createFromFormat(config('project.date_format'), $value)->format('Y-m-d') : null;
+    }
+
+    public function game()
+    {
+        return $this->belongsToMany(Game::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)

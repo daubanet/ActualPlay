@@ -53,10 +53,6 @@
                             @include('components.table.sort', ['field' => 'start'])
                         </th>
                         <th>
-                            {{ trans('cruds.game.fields.campaign') }}
-                            @include('components.table.sort', ['field' => 'campaign.name'])
-                        </th>
-                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -74,11 +70,6 @@
                             </td>
                             <td>
                                 {{ $game->start }}
-                            </td>
-                            <td>
-                                @if($game->campaign)
-                                    <span class="badge badge-relationship">{{ $game->campaign->name ?? '' }}</span>
-                                @endif
                             </td>
                             <td>
                                 <div class="flex justify-end">

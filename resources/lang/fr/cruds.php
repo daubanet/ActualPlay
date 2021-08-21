@@ -89,6 +89,8 @@ return [
             'updated_at_helper'  => ' ',
             'deleted_at'         => 'Deleted at',
             'deleted_at_helper'  => ' ',
+            'game'               => 'Game',
+            'game_helper'        => ' ',
         ],
     ],
     'game' => [
@@ -101,8 +103,6 @@ return [
             'name_helper'       => ' ',
             'start'             => 'Start',
             'start_helper'      => ' ',
-            'campaign'          => 'Campaign',
-            'campaign_helper'   => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',
