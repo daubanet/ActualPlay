@@ -133,6 +133,13 @@ class StorePlayerRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'skill' => [
+                'array',
+            ],
+            'skill.*.id' => [
+                'integer',
+                'exists:skills,id',
+            ],
         ];
     }
 }

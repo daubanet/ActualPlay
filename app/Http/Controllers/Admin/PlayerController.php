@@ -35,6 +35,8 @@ class PlayerController extends Controller
     {
         abort_if(Gate::denies('player_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $player->load('skill');
+
         return view('admin.player.show', compact('player'));
     }
 }

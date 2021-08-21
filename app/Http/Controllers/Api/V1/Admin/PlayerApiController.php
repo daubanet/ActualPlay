@@ -17,12 +17,13 @@ class PlayerApiController extends Controller
     {
         abort_if(Gate::denies('player_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PlayerResource(Player::all());
+        return new PlayerResource(Player::with(['skill'])->get());
     }
 
     public function store(StorePlayerRequest $request)
     {
         $player = Player::create($request->validated());
+        $player->skill()->sync($request->input('skill', []));
 
         return (new PlayerResource($player))
             ->response()
@@ -33,12 +34,13 @@ class PlayerApiController extends Controller
     {
         abort_if(Gate::denies('player_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PlayerResource($player);
+        return new PlayerResource($player->load(['skill']));
     }
 
     public function update(UpdatePlayerRequest $request, Player $player)
     {
         $player->update($request->validated());
+        $player->skill()->sync($request->input('skill', []));
 
         return (new PlayerResource($player))
             ->response()

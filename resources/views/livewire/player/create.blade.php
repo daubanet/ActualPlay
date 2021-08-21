@@ -230,6 +230,16 @@
             {{ trans('cruds.player.fields.damage_helper') }}
         </div>
     </div>
+    <div class="form-group {{ $errors->has('skill') ? 'invalid' : '' }}">
+        <label class="form-label" for="skill">{{ trans('cruds.player.fields.skill') }}</label>
+        <x-select-list class="form-control" id="skill" name="skill" wire:model="skill" :options="$this->listsForFields['skill']" multiple />
+        <div class="validation-message">
+            {{ $errors->first('skill') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.player.fields.skill_helper') }}
+        </div>
+    </div>
 
     <div class="form-group">
         <button class="btn btn-indigo mr-2" type="submit">

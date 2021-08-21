@@ -177,6 +177,8 @@ return [
             'degrees_helper'     => ' ',
             'damage'             => 'Damage',
             'damage_helper'      => ' ',
+            'skill'              => 'Skill',
+            'skill_helper'       => ' ',
         ],
     ],
     'skill' => [

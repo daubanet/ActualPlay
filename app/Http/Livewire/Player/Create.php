@@ -3,15 +3,21 @@
 namespace App\Http\Livewire\Player;
 
 use App\Models\Player;
+use App\Models\Skill;
 use Livewire\Component;
 
 class Create extends Component
 {
     public Player $player;
 
+    public array $skill = [];
+
+    public array $listsForFields = [];
+
     public function mount(Player $player)
     {
         $this->player = $player;
+        $this->initListsForFields();
     }
 
     public function render()
@@ -24,6 +30,7 @@ class Create extends Component
         $this->validate();
 
         $this->player->save();
+        $this->player->skill()->sync($this->skill);
 
         return redirect()->route('admin.players.index');
     }
@@ -147,6 +154,18 @@ class Create extends Component
                 'string',
                 'nullable',
             ],
+            'skill' => [
+                'array',
+            ],
+            'skill.*.id' => [
+                'integer',
+                'exists:skills,id',
+            ],
         ];
+    }
+
+    protected function initListsForFields(): void
+    {
+        $this->listsForFields['skill'] = Skill::pluck('name', 'id')->toArray();
     }
 }

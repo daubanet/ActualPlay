@@ -68,6 +68,7 @@ class Player extends Model
         'schools',
         'degrees',
         'damage',
+        'skill.name',
     ];
 
     protected $dates = [
@@ -101,6 +102,11 @@ class Player extends Model
         'degrees',
         'damage',
     ];
+
+    public function skill()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

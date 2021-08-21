@@ -137,6 +137,9 @@
                             @include('components.table.sort', ['field' => 'damage'])
                         </th>
                         <th>
+                            {{ trans('cruds.player.fields.skill') }}
+                        </th>
+                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -217,6 +220,11 @@
                             </td>
                             <td>
                                 {{ $player->damage }}
+                            </td>
+                            <td>
+                                @foreach($player->skill as $key => $entry)
+                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 <div class="flex justify-end">
