@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Player;
 use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
@@ -11,6 +12,8 @@ class Create extends Component
     public User $user;
 
     public array $roles = [];
+
+    public array $player = [];
 
     public string $password = '';
 
@@ -33,6 +36,7 @@ class Create extends Component
         $this->user->password = $this->password;
         $this->user->save();
         $this->user->roles()->sync($this->roles);
+        $this->user->player()->sync($this->player);
 
         return redirect()->route('admin.users.index');
     }
@@ -61,11 +65,19 @@ class Create extends Component
                 'integer',
                 'exists:roles,id',
             ],
+            'player' => [
+                'array',
+            ],
+            'player.*.id' => [
+                'integer',
+                'exists:players,id',
+            ],
         ];
     }
 
     protected function initListsForFields(): void
     {
-        $this->listsForFields['roles'] = Role::pluck('title', 'id')->toArray();
+        $this->listsForFields['roles']  = Role::pluck('title', 'id')->toArray();
+        $this->listsForFields['player'] = Player::pluck('name', 'id')->toArray();
     }
 }

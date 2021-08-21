@@ -40,6 +40,16 @@
             {{ trans('cruds.user.fields.roles_helper') }}
         </div>
     </div>
+    <div class="form-group {{ $errors->has('player') ? 'invalid' : '' }}">
+        <label class="form-label" for="player">{{ trans('cruds.user.fields.player') }}</label>
+        <x-select-list class="form-control" id="player" name="player" wire:model="player" :options="$this->listsForFields['player']" multiple />
+        <div class="validation-message">
+            {{ $errors->first('player') }}
+        </div>
+        <div class="help-block">
+            {{ trans('cruds.user.fields.player_helper') }}
+        </div>
+    </div>
 
     <div class="form-group">
         <button class="btn btn-indigo mr-2" type="submit">

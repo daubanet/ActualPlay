@@ -60,6 +60,9 @@
                             {{ trans('cruds.user.fields.roles') }}
                         </th>
                         <th>
+                            {{ trans('cruds.user.fields.player') }}
+                        </th>
+                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -88,6 +91,11 @@
                             <td>
                                 @foreach($user->roles as $key => $entry)
                                     <span class="badge badge-relationship">{{ $entry->title }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($user->player as $key => $entry)
+                                    <span class="badge badge-relationship">{{ $entry->name }}</span>
                                 @endforeach
                             </td>
                             <td>

@@ -35,6 +35,7 @@ class User extends Authenticatable
         'email',
         'email_verified_at',
         'roles.title',
+        'player.name',
     ];
 
     protected $hidden = [
@@ -80,6 +81,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function player()
+    {
+        return $this->belongsToMany(Player::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)
