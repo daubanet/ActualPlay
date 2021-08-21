@@ -92,6 +92,15 @@
                         </a>
                     </li>
                 @endcan
+                @can('character_access')
+                    <li class="items-center">
+                        <a class="{{ request()->is("admin/characters*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.characters.index") }}">
+                            <i class="fa-fw c-sidebar-nav-icon fas fa-cogs">
+                            </i>
+                            {{ trans('cruds.character.title') }}
+                        </a>
+                    </li>
+                @endcan
 
                 @if(file_exists(app_path('Http/Controllers/Auth/UserProfileController.php')))
                     @can('auth_profile_edit')

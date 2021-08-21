@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Admin\CampaignApiController;
+use App\Http\Controllers\Api\V1\Admin\CharacterApiController;
 use App\Http\Controllers\Api\V1\Admin\GameApiController;
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']], function () {
@@ -10,4 +11,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'middleware' => ['auth:sanctum']
 
     // Game
     Route::apiResource('games', GameApiController::class);
+
+    // Character
+    Route::apiResource('characters', CharacterApiController::class);
 });
