@@ -125,4 +125,8 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'systemCalendar' => [
+        'title'          => 'Calendar',
+        'title_singular' => 'Calendar',
+    ],
 ];

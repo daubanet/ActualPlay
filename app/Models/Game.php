@@ -63,8 +63,4 @@ class Game extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
-
-    public function game(){
-        return $this->belongsTo(Campaign::class);
-    }
 }
